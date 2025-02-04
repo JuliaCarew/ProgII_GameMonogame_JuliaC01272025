@@ -27,19 +27,22 @@ namespace ProgII_GameMonogame_JuliaC01272025
         {
             if (isGameOver)
             {
-
+                // freeze the game 
             }
         }
 
         protected override void Initialize()
         {
             base.Initialize();
-            gameEntities.Add(new Player(this, new Vector2(100,100)));
+            //gameEntities.Add(new Player(this, new Vector2(100,100)));
+            player = new Player(this, new Vector2(100,100));
+            gameEntities.Add(player);
             //pipe = new Pipe(this, new Vector2(100, 100));
-            // for loop to draw pipes
-            for (int i = 0; i < 3; i++)
+            int screenWidth = GraphicsDevice.Viewport.Width;
+
+            for (int i = 0; i < 3; i++) // for loop to draw pipes
             {
-                CreatePipe(new Vector2(_graphics.PreferredBackBufferWidth - i*70),(_graphics.PreferredBackBufferHeight));
+                gameEntities.Add(new Pipes(this, screenWidth));
             }
         }
         // somewhere?? foreach gameentity in gameentities draw ??
@@ -50,16 +53,20 @@ namespace ProgII_GameMonogame_JuliaC01272025
 
         protected override void Update(GameTime gameTime)
         {
-            float deltaTime = gameTime.ElapsedGameTime.Milliseconds * 0.01f;
+            float deltaTime = (float)gameTime.ElapsedGameTime.TotalSeconds;
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
+            foreach (var entity in gameEntities)
+            {
+                entity.Update(deltaTime);
+            }
             base.Update(gameTime);
         }
         public void CreatePipe(Vector2 pipePosition)
         {
-            var newPipe = Pipe(this, pipePosition);
-            gameEntities.Add(newPipe);
+            //var newPipe = Pipe(this, pipePosition);
+            //gameEntities.Add(newPipe);
         }
 
         protected override void Draw(GameTime gameTime)
@@ -67,7 +74,11 @@ namespace ProgII_GameMonogame_JuliaC01272025
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
             _spriteBatch.Begin();
-            player.Draw(gameTime); 
+            //player.Draw(gameTime); 
+            foreach (var entity in gameEntities)
+            {
+                entity.Draw(_spriteBatch);
+            }
             _spriteBatch.End();
             
             base.Draw(gameTime);

@@ -1,6 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using System;
 //using System.Drawing;
 
 namespace ProgII_GameMonogame_JuliaC01272025
@@ -24,20 +23,32 @@ namespace ProgII_GameMonogame_JuliaC01272025
         public virtual void Update(float deltaTime)
         {
             position = movementDirection * deltaTime;
-            collider = new Rectangle((int)(position.X - (sprite.Width/2)), (int)position.Y - (sprite.Height / 2), sprite.Height, sprite.Width);
-            //float deltaTime = gameTime.ElapsedGameTime.Milliseconds * 0.01f;
+            collider = new Rectangle(
+                (int)(position.X - (sprite.Width/2)), 
+                (int)position.Y - (sprite.Height / 2), 
+                sprite.Height, sprite.Width
+            );
+            //float deltaTime = spriteBatch.ElapsedGameTime.Milliseconds * 0.01f;
         }
-        public void Draw(GameTime gameTime)
+        public virtual void Draw(SpriteBatch spriteBatch)
         {
             //GraphicsDevice.Clear(Color.CornflowerBlue);
-
-            gameManager.SpriteBatch.Begin();
-
-            gameManager.SpriteBatch.Draw(sprite, new Rectangle((int)position.X, (int)position.Y,
-                sprite.Width, sprite.Height), Color.White);
-            gameManager.SpriteBatch.End();
-
-            Draw(gameTime);
+            spriteBatch.Draw(sprite, new Rectangle(
+                (int)position.X, (int)position.Y,
+                sprite.Width, sprite.Height), Color.White
+            );
+            
         }
     }
 }
+/*
+ * gameManager.SpriteBatch.Begin();
+
+            gameManager.SpriteBatch.Draw(sprite, new Rectangle(
+                (int)position.X, (int)position.Y,
+                sprite.Width, sprite.Height), Color.White
+            );
+            gameManager.SpriteBatch.End();
+
+            Draw(spriteBatch);
+ */

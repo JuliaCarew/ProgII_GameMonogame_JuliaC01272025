@@ -53,8 +53,8 @@ namespace ProgII_GameMonogame_JuliaC01272025
             }
 
             int heightofWindow = gameManager.Graphics.PreferredBackBufferHeight;
-
-            Update(deltaTime);
+            position.Y = MathHelper.Clamp(position.Y, 0, 300 - sprite.Height);
+            //Update(deltaTime);
         }
     }
 }
