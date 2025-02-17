@@ -1,9 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 
 
 namespace ProgII_GameMonogame_JuliaC01272025
@@ -40,11 +38,11 @@ namespace ProgII_GameMonogame_JuliaC01272025
             // remove off-screen pipes
             pipePosition.RemoveAll(pipe => pipe.X + pipeTexture.Width < 0);
             // spawn new pipes 
-            if (pipePosition.Count == 0 
+            if (pipePosition.Count == 0
                 || pipePosition[pipePosition.Count - 1].X < screenWidth - 300)
             {
                 SpawnPipe();
-            } 
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -57,7 +55,7 @@ namespace ProgII_GameMonogame_JuliaC01272025
 
                 // draw TOP
                 spriteBatch.Draw(
-                    pipeTexture, topPipePos, null, Color.White, 0f, 
+                    pipeTexture, topPipePos, null, Color.White, 0f,
                     Vector2.Zero, 1f, SpriteEffects.FlipVertically, 0f
                 );
                 // draw BOTTOM
@@ -70,7 +68,7 @@ namespace ProgII_GameMonogame_JuliaC01272025
             int minY = 100;
             int maxY = 300;
             int gapSize = 150;
-            int yPos = random.Next( minY, maxY ); // random Y position to spawn
+            int yPos = random.Next(minY, maxY); // random Y position to spawn
             // spawn TOP
             pipePosition.Add(new Vector2(screenWidth, yPos - pipeTexture.Height));
             // spawn BOTTOM

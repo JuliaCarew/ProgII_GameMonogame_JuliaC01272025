@@ -17,7 +17,7 @@ namespace ProgII_GameMonogame_JuliaC01272025
         {
             gameManager = game;
             movementDirection = new Vector2();
-            //sprite = gameManager.Content.Load<Texture2D>("tile_0126");
+            sprite = gameManager.Content.Load<Texture2D>("tile_0126");
         }
 
         public virtual void Update(float deltaTime)
