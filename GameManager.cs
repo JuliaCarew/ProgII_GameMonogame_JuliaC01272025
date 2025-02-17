@@ -2,6 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System.Collections.Generic;
+using System.Diagnostics;
 
 namespace ProgII_GameMonogame_JuliaC01272025
 {
@@ -35,8 +36,9 @@ namespace ProgII_GameMonogame_JuliaC01272025
         {
             base.Initialize();
             //gameEntities.Add(new Player(this, new Vector2(100,100)));
-            player = new Player(this, new Vector2(100,100));
+            player = new Player(this, new Vector2(300,300));
             gameEntities.Add(player);
+            Debug.WriteLine("GameManager Update: " + gameEntities.Count);
             //pipe = new Pipe(this, new Vector2(100, 100));
             int screenWidth = GraphicsDevice.Viewport.Width;
 
@@ -74,11 +76,12 @@ namespace ProgII_GameMonogame_JuliaC01272025
             GraphicsDevice.Clear(Color.CornflowerBlue);
             
             _spriteBatch.Begin();
-            //player.Draw(gameTime); 
+
             foreach (var entity in gameEntities)
             {
                 entity.Draw(_spriteBatch);
             }
+
             _spriteBatch.End();
             
             base.Draw(gameTime);

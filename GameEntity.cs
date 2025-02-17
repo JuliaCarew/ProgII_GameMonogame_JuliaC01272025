@@ -22,17 +22,15 @@ namespace ProgII_GameMonogame_JuliaC01272025
 
         public virtual void Update(float deltaTime)
         {
-            position = movementDirection * deltaTime;
+            position += movementDirection * speed * deltaTime;
             collider = new Rectangle(
                 (int)(position.X - (sprite.Width/2)), 
                 (int)position.Y - (sprite.Height / 2), 
                 sprite.Height, sprite.Width
             );
-            //float deltaTime = spriteBatch.ElapsedGameTime.Milliseconds * 0.01f;
         }
         public virtual void Draw(SpriteBatch spriteBatch)
         {
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
             spriteBatch.Draw(sprite, new Rectangle(
                 (int)position.X, (int)position.Y,
                 sprite.Width, sprite.Height), Color.White
@@ -41,14 +39,3 @@ namespace ProgII_GameMonogame_JuliaC01272025
         }
     }
 }
-/*
- * gameManager.SpriteBatch.Begin();
-
-            gameManager.SpriteBatch.Draw(sprite, new Rectangle(
-                (int)position.X, (int)position.Y,
-                sprite.Width, sprite.Height), Color.White
-            );
-            gameManager.SpriteBatch.End();
-
-            Draw(spriteBatch);
- */
